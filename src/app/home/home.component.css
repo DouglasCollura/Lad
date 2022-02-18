@@ -1,0 +1,52 @@
+.temp-home{
+    min-height: 100%;
+	display: grid;
+	grid-template: 
+	"section-menu section-main"auto/
+    300px auto;
+    
+}
+
+.section-menu{
+	grid-area: section-menu;
+    display: grid;
+    grid-template-rows: 60px 50px auto;
+    box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.08);
+}
+
+.menu-top-logo{
+    background-color: var(--primario-rosa-2);
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.menu-nav{
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    justify-items: space-around;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
+    
+}
+
+.menu-nav button{
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.menu-nav button:hover i{
+    color: var(--neutro-600);
+}
+
+.menu-nav button i{
+    font-size: 22px;
+    color: var(--neutro-300);
+    transition: all .15s;
+    -webkit-transition: all .15s;
+    -moz-transition: all .15s;
+    -ms-transition: all .15s;
+    -o-transition: all .15s;
+}
