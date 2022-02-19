@@ -46,32 +46,33 @@
                 <div class="form-group">
                     <label for="">Nombre </label>
                     <input type="text"
-                        [(ngModel)]="usuario.nombre"
+                        [(ngModel)]="usuario.datos.nombre"
                         placeholder="Ingresar nombre y apellido"
-                        (keyup)="Vacio()" 
+                        (keyup)="PassF1()"  
                     >
                 </div>
 
                 <div class="form-group">
                     <label for="">Email </label>
                     <input type="text" 
-                        [(ngModel)]="usuario.correo"
+                        [(ngModel)]="usuario.datos.correo"
                         placeholder="Ingresar email"
-                        (keyup)="Vacio()" 
+                        (keyup)="PassF1()" 
                     >
                 </div>
 
                 <div class="form-group">
                     <label for="">Número de teléfono </label>
                     <div class="input-group-append">
-                        <select style="width: 150px;" class="input-append" (change)="mostrar($event)" [(ngModel)]="usuario.code_phone" name="" id=""> 
+                        <select style="width: 150px;" class="input-append" (change)="[mostrar($event),PassF1()]" [(ngModel)]="usuario.datos.code_phone" name="" id=""> 
                             <option value="+" disabled selected >+</option>
                             <option  [value]="locacion.country_phone_code" *ngFor="let locacion of locaciones"> +{{locacion.country_phone_code}} - {{locacion.country_short_name}} </option>
                         </select>
+
                         <input type="text" 
                             placeholder="Ingresar número"
-                            [(ngModel)]="usuario.telefono"
-                            (keyup)="Vacio()" 
+                            [(ngModel)]="usuario.datos.telefono"
+                            (keyup)="PassF1()" 
                         >
                     </div>
                 </div>
@@ -80,18 +81,18 @@
                     <label for="">Contraseña </label>
                     <input type="password" 
                         placeholder="Ingresar una contraseña"
-                        [(ngModel)]="usuario.clave"
-                        (keyup)="Vacio()" 
+                        [(ngModel)]="usuario.datos.clave"
+                        (keyup)="PassF1()" 
                     >
                 </div>
 
                 <div class="form-group">
                     <label for="">Confirmar contraseña </label>
-                    <input type="password" placeholder="Confirmar contraseña">
+                    <input type="password" (keyup)="PassF1()" [(ngModel)]="rep_clave" placeholder="Confirmar contraseña">
                 </div>
 
                 <div class="checkbox-group">
-                    <input type="checkbox" checked="true" id="session-open"> 
+                    <input type="checkbox" checked="true" id="session-open "> 
                     <label for="session-open"> Recordar Contraseña</label>
                 </div>
                 <button 
@@ -133,7 +134,7 @@
             <div class="grid" *ngIf="fase == 2">
                 <div class="grid gap-20 align-self-start">
                     <h1 class="form-title">¿Cuando es tu cumpleaños?</h1>
-                    <input type="date">
+                    <input type="date" [(ngModel)]="usuario.fecha_nac">
                 </div>
                 
                 <h5>*Esta información solo servirá para mostrarte a personas potenciales por medio de filtros</h5>
@@ -145,17 +146,29 @@
 
                 <div class="form-group">
                     <label for="">Pais </label>
-                    <select name="" id=""></select>
+                    <select name="" [(ngModel)]="usuario.locacion.pais" (change)="CargarEstados()" id="">
+                        <option [value]="pais.country_name" *ngFor="let pais of locaciones">
+                            {{ pais.country_name}}
+                        </option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Estado </label>
-                    <select name="" id=""></select>
+                    <select name="" id="" [(ngModel)]="usuario.locacion.estado" (change)="CargarCiudad()">
+                        <option [value]="estado.state_name"  *ngFor="let estado of estados">
+                            {{ estado.state_name}}
+                        </option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Ciudad </label>
-                    <select name="" id=""></select>
+                    <select name="" id="" [(ngModel)]="usuario.locacion.ciudad">
+                        <option [value]="ciudad.city_name"  *ngFor="let ciudad of ciudades">
+                            {{ ciudad.city_name}}
+                        </option>
+                    </select>
                 </div>
                 
                 <h5>*Esta información solo servirá para mostrarte a personas potenciales por medio de filtros</h5>
@@ -227,7 +240,7 @@
             <button 
                 class="btn-primary btn-circle"
                 *ngIf="fase != 7"
-                (click)="fase = fase+1"
+                (click)="CtrlForm()"
             ><i class="icon icon-arrow-right"></i></button>
 
             <div class="grid gap-10 align-content-start justify-self-stretch">

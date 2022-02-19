@@ -37,4 +37,30 @@ export class GeoLocationService {
         })
     }
 
+    async getStates(pais:any){
+        return this.getToken()
+        .then(res=>{
+            this.tokenAuthorization = res.auth_token;
+
+            const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + this.tokenAuthorization,
+            "Accept": "application/json"
+            });
+            return this.http.get<any>(`${this.url}states/${pais}`, {headers}).toPromise()
+        })
+    }
+
+    async getCities(estado:any){
+        return this.getToken()
+        .then(res=>{
+            this.tokenAuthorization = res.auth_token;
+
+            const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + this.tokenAuthorization,
+            "Accept": "application/json"
+            });
+            return this.http.get<any>(`${this.url}cities/${estado}`, {headers}).toPromise()
+        })
+    }
+
 }
