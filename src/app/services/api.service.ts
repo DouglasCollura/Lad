@@ -11,7 +11,7 @@ export class ApiService {
     constructor(private http: HttpClient) {
     }
 
-    url:string = environment.serverUrl;
+    url:string = 'https://backalimas.calimas.pe/api/';
 
     async getUsers(): Promise<any> {
         // const headers = new HttpHeaders({

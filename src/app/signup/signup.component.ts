@@ -195,7 +195,7 @@ export class SignupComponent implements OnInit {
             }
             this.fase =3;
         }
-        if(this.fase == 3){
+        else if(this.fase == 3){
             if(Vacio(this.usuario.locacion)){
                 Swal.fire({
                     title: 'Complete todos los campos',
@@ -206,7 +206,7 @@ export class SignupComponent implements OnInit {
             this.fase =4;
         } 
 
-        if(this.fase == 4){
+        else if(this.fase == 4){
             if(this.ctrl_identidad.length == 0 && this.ctrl_servicios.length == 0){
                 Swal.fire({
                     title: 'Seleccione almenos una opción',
@@ -221,7 +221,7 @@ export class SignupComponent implements OnInit {
             this.fase = 5;            
         }
 
-        if(this.fase == 5){
+        else if(this.fase == 5){
             if(this.user_imagen_show){
                 this.fase = 6;
             }else{
