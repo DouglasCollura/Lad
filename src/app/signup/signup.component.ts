@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
         },
         fecha_nac:null,
         locacion:{
-            pais:null,
+            pais:0,
             estado:null,
             ciudad:null
         },

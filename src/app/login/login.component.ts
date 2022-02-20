@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { LoginServiceService } from './login-service.service';
+import { Router} from '@angular/router';
+import Swal from 'sweetalert2';
+import { Vacio, VacioU} from '../../assets/script/general';
 
 @Component({
     selector: 'app-login',
@@ -9,7 +12,8 @@ import { LoginServiceService } from './login-service.service';
 export class LoginComponent implements OnInit {
 
     constructor(
-        private LoginServiceService:LoginServiceService
+        private LoginServiceService:LoginServiceService,
+        private router: Router
     ) { }
 
     @Output() ExportClose = new EventEmitter<boolean>();
@@ -33,14 +37,22 @@ export class LoginComponent implements OnInit {
 
     //!FUNCIONES
     LogIn(){
-        
+        if(this.habLogin){
+            this.router.navigate(['/home']);
+        }else{
+            Swal.fire({
+                title: 'Complete todos los campos',
+                icon: 'error',
+            });
+            return;
+        }
     }
     
     ValAcceso(){
-        if(this.usuario.correo != '' && this.usuario.clave != ''){
-            this.habLogin = true;
-        }else{
+        if(Vacio(this.usuario)){
             this.habLogin = false;
+        }else{
+            this.habLogin = true;
         }
     }
 

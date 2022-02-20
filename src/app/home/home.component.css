@@ -35,18 +35,44 @@
     border: none;
     padding: 5px;
     cursor: pointer;
+    color: var(--neutro-300);
 }
 
-.menu-nav button:hover i{
+.menu-nav button:hover {
     color: var(--neutro-600);
 }
 
 .menu-nav button i{
     font-size: 22px;
-    color: var(--neutro-300);
+    color: inherit;
     transition: all .15s;
     -webkit-transition: all .15s;
     -moz-transition: all .15s;
     -ms-transition: all .15s;
     -o-transition: all .15s;
+}
+
+.menu-nav-active{
+    color: var(--primario-rosa-2) !important;
+    position: relative;
+    display: grid;
+}
+.menu-nav-active:hover{
+    color: var(--primario-rosa-2) !important;
+}
+
+.menu-nav-active:before{
+  content: "";
+  position: absolute;
+  justify-self: center;
+  align-self: end;
+  bottom: -4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--primario-rosa-2);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }

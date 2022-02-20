@@ -147,6 +147,7 @@
                 <div class="form-group">
                     <label for="">Pais </label>
                     <select name="" [(ngModel)]="usuario.locacion.pais" (change)="CargarEstados()" id="">
+                        <option value="0" disabled>Seleccionar</option>
                         <option [value]="pais.country_name" *ngFor="let pais of locaciones">
                             {{ pais.country_name}}
                         </option>
