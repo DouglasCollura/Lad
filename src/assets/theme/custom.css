@@ -337,6 +337,15 @@ input[type=checkbox]:checked:before{
     border: 1px solid var(--neutro-800);
     color: var(--neutro-800);
 }
+
+.btn-genero{
+    border: 1px solid #A6A6A6;
+    color: #A6A6A6;
+}
+.btn-genero-active{
+    border: 1px solid var(--primario-rosa-2);
+    color: var(--primario-rosa-2);
+}
 /* * 
 *   ###################### CARD ##################################### 
 * */
@@ -460,22 +469,30 @@ input[type=checkbox]:checked:before{
     margin: 10px 0px;
 }
 
+.content-circle-img{
+    position: relative;
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+
+
+.circle-img {
+    overflow: hidden;
+    background-color: var(--neutro-200);
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-self: start;
+
+    border-radius: 40px;
+}
 .circle-img img{
     width: 100%;
     height: 100%;
     object-fit:scale-down;
-    overflow: hidden;
 }
-.circle-img {
-    position: relative;
-    background-color: var(--neutro-200);
-    display: grid;
-    height: 72px;
-    justify-self: start;
-    width: 72px;
-    border-radius: 40px;
-}
-
 .sub-circle-img{
     position: absolute;
     width: 25px;

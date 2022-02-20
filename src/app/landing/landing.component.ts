@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
     ) { }
 
     load_login:boolean = false;
-    load_signup:boolean = true;
+    load_signup:boolean = false;
     blur = false;
 
     @Input() IMPORTCLOSE:any;
@@ -40,9 +40,7 @@ export class LandingComponent implements OnInit {
 
     ngOnInit(): void {
         this.GeoLocationService.getCountries()
-        navigator.geolocation.getCurrentPosition(function(position){
-            console.log(position);
-        });  
+        
         this.LoginServiceService.change.subscribe(res=>{
             this.blur = res.blur;
         }) 

@@ -181,30 +181,35 @@
                 <h5 class="font-300">Elige una, varias opciones o servicios que brindas como usuario</h5>
                 
                 <div class="group-btn-identidad">
-                    <button class="btn btn-genero">Mujer</button>
-                    <button class="btn btn-genero">Hombre</button>
-                    <button class="btn btn-genero">No binario</button>
-                    <button class="btn btn-genero">Pareja</button>
-                    <button class="btn btn-genero">Gay</button>
-                    <button class="btn btn-genero">Transexual</button>
-                    <button class="btn btn-genero">Travestie</button>
-                    <button class="btn btn-genero">Lesbiana</button>
-                    <button class="btn btn-genero">Agencia matrimonial</button>
-                    <button class="btn btn-genero">Masajes eróticos</button>
-                    <button class="btn btn-genero">Otros</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(0,$event)">Mujer</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(1,$event)">Hombre</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(2,$event)">No binario</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(3,$event)">Pareja</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(4,$event)">Gay</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(5,$event)">Transexual</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(6,$event)">Travestie</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(7,$event)">Lesbiana</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(8,$event)">Otros</button>
+                    <button class="btn btn-genero" (click)="selectServicio(0,$event)">Masajes eróticos</button>
+                    <button class="btn btn-genero" (click)="selectServicio(1,$event)">Juguetes sexuales</button>
+                    <button class="btn btn-genero" (click)="selectServicio(2,$event)">Espacios sexuales</button>
+                    <button class="btn btn-genero" (click)="selectServicio(3,$event)">Agencia matrimonial</button>
+                    <button class="btn btn-genero" (click)="selectServicio(4,$event)">Otros</button>
                 </div>
             </div>
 
             <!-- ? CARGAR FOTO PERFIL -->
             <div class="grid justify-items-center" *ngIf="fase == 5">
                 <h1 class="form-title">Sube una foto de perfil</h1>
-
-                <div class="circle-img" >
-                    <img src="../../assets/imagenes/user.png"  alt="">
-                    
-                    <button class="sub-circle-img">+</button>
+                <div class="content-circle-img">
+                    <div class="circle-img" >
+                        <img *ngIf="user_imagen_show == null" src="../../assets/imagenes/user.png"  alt="">
+                        <img [src]="user_imagen_show" alt="">
+                    </div>
+                    <button (click)="SelectImg()" class="sub-circle-img">+</button>
                 </div>
 
+                <input type="file" id="img" (change)="CargarImagen($event)" style="display:none" accept="image/png, image/gif, image/jpeg">   
                 <h5 class="text-center">Esta foto será visible para <br> todos los usuarios</h5>
             </div>
 
@@ -215,17 +220,20 @@
                 <h5 class="font-300">Elige una, varias opciones o servicios que buscas en Ladies Vip</h5>
                 
                 <div class="group-btn-identidad">
-                    <button class="btn btn-genero">Mujer</button>
-                    <button class="btn btn-genero">Hombre</button>
-                    <button class="btn btn-genero">No binario</button>
-                    <button class="btn btn-genero">Pareja</button>
-                    <button class="btn btn-genero">Gay</button>
-                    <button class="btn btn-genero">Transexual</button>
-                    <button class="btn btn-genero">Travestie</button>
-                    <button class="btn btn-genero">Lesbiana</button>
-                    <button class="btn btn-genero">Agencia matrimonial</button>
-                    <button class="btn btn-genero">Masajes eróticos</button>
-                    <button class="btn btn-genero">Otros</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(0,$event)">Mujer</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(1,$event)">Hombre</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(2,$event)">No binario</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(3,$event)">Pareja</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(4,$event)">Gay</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(5,$event)">Transexual</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(6,$event)">Travestie</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(7,$event)">Lesbiana</button>
+                    <button class="btn btn-genero" (click)="selectIdentidad(8,$event)">Otros</button>
+                    <button class="btn btn-genero" (click)="selectServicio(0,$event)">Masajes eróticos</button>
+                    <button class="btn btn-genero" (click)="selectServicio(1,$event)">Juguetes sexuales</button>
+                    <button class="btn btn-genero" (click)="selectServicio(2,$event)">Espacios sexuales</button>
+                    <button class="btn btn-genero" (click)="selectServicio(3,$event)">Agencia matrimonial</button>
+                    <button class="btn btn-genero" (click)="selectServicio(4,$event)">Otros</button>
                 </div>
             </div>
 
@@ -244,8 +252,8 @@
             ><i class="icon icon-arrow-right"></i></button>
 
             <div class="grid gap-10 align-content-start justify-self-stretch">
-                <button *ngIf="fase == 7" class="btn-primary btn-block">Activar</button>
-                <button *ngIf="fase == 7" class="btn-secondary btn-block">No por el momento   </button>
+                <button *ngIf="fase == 7" (click)="ActivarGeo()" class="btn-primary btn-block">Activar</button>
+                <button *ngIf="fase == 7" [routerLink]="'/home'" class="btn-secondary btn-block">No por el momento   </button>
             </div>
 
         </div>
