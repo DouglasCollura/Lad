@@ -9,6 +9,18 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecoverypassComponent } from './recoverypass/recoverypass.component';
 import { HomeComponent } from './home/home.component';
+import { MainComponent } from './admin/main/main.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminMarketComponent } from './admin/admin-market/admin-market.component';
+import { AdminSolicitudesComponent } from './admin/admin-solicitudes/admin-solicitudes.component';
+import { AdminHomeUsuarioComponent } from './admin/home/admin-home-usuario/admin-home-usuario.component';
+import { AdminHomeAnunciosComponent } from './admin/home/admin-home-anuncios/admin-home-anuncios.component';
+import { AdminHomeReportesComponent } from './admin/home/admin-home-reportes/admin-home-reportes.component';
+
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider,FacebookLoginProvider } from 'angularx-social-login';
+import { ModalesComponent } from './componentes/modales/modales.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +30,14 @@ import { HomeComponent } from './home/home.component';
     SignupComponent,
     RecoverypassComponent,
     HomeComponent,
+    MainComponent,
+    AdminHomeComponent,
+    AdminMarketComponent,
+    AdminSolicitudesComponent,
+    AdminHomeUsuarioComponent,
+    AdminHomeAnunciosComponent,
+    AdminHomeReportesComponent,
+    ModalesComponent,
     
   ],
   imports: [
@@ -26,8 +46,27 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SocialLoginModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '998158333459-v13en8bhgur1on2evjum0g9h37mod054.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1588572954831923')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

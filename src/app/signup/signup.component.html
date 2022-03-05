@@ -22,10 +22,12 @@
                 <div class="grid justify-items-center gap-20">
                     <h3 class="text-center">Continuar con</h3>
                     <div class="group-logins">
-                        <button class="btn-type-login"> <img src="../../assets/imagenes/Facebook.png" alt="">  </button>
-                        <button class="btn-type-login"> <img src="../../assets/imagenes/Google.png" alt="">  </button>
-                        <button class="btn-type-login"> <img src="../../assets/imagenes/Phone.png" alt="">  </button>
+                        <button class="btn-type-login" (click)="signInWithFB()"> <img src="../../assets/imagenes/Facebook.png" alt="">  </button>
+                        <button class="btn-type-login" (click)="signInWithGoogle()"> <img src="../../assets/imagenes/Google.png" alt="">  </button>
+                        <button class="btn-type-login" (click)="signOut()"> <img src="../../assets/imagenes/Phone.png" alt="">  </button>
+
                     </div>
+
                 </div>
 
                 <div class="display-column">

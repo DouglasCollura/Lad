@@ -68,7 +68,7 @@
 	padding: 0px;	
 	font-weight:400;
 	color: var(--neutro-700);
-	font-size: 16px;
+	font-size: 14px;
 }
 html{
 	height:100%;
@@ -78,16 +78,22 @@ body{
     display: grid;
 	min-height: 100%;
 	font-family: Ubuntu;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 16px;
 	color: var(--neutro-700);
 }
 
 .gap-10{
-    grid-gap: 10px;
+    grid-gap: 10px !important;
 }
 .gap-20{
-    grid-gap: 20px;
+    grid-gap: 20px !important;
+}
+
+.flex-column{
+    display: flex;
+    flex-wrap:wrap;
+    grid-gap: 5px;
 }
 
 /* * 
@@ -95,11 +101,11 @@ body{
 * */
 
 h1,h2,h3,h4{margin: 0px; padding: 0px;}
-h1{font-size: 24px; line-height: 22px;}
-h2{font-size: 20px; line-height: 22px}
-h3{font-size: 18px;}
-h4{font-size: 16px;}
-h5{font-size: 14px; line-height: 18px;}
+h1{font-size: 22px; line-height: 22px;}
+h2{font-size: 18px; line-height: 22px}
+h3{font-size: 16px;}
+h4{font-size: 14px;}
+h5{font-size: 12px; line-height: 18px;}
 
 label{ 
     font-weight: 500 !important; 
@@ -107,17 +113,29 @@ label{
     color: var(--neutro-500);
 }
 
-input,select{
+input,select, textarea{
     background: #FFFFFF;
     border: 1px solid var(--neutro-300);
     box-sizing: border-box;
     border-radius: 100px;
-    height: 45px;
+    height: 40px;
     padding: 10px 15px;
     color: var(--neutro-800);
     width: 100%;
     outline: none;
     margin: 5px 0px;
+}
+textarea{
+    height: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+select{
+    cursor: pointer;
 }
 
 input[type=checkbox]{
@@ -158,6 +176,54 @@ input[type=checkbox]:checked:before{
     color: var(--primario-rosa-2);
 }
 
+input[type=radio]{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    padding: 0px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    outline: 1.5px solid #A6A6A6;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+input[type=radio]:checked{
+    width: 18px;
+    height: 18px;
+    padding: 0px;
+    position: relative;
+    background-color:var(--primario-rosa-2);
+    outline: none;
+    border: 2px solid var(--primario-rosa-2);
+}
+input[type=radio]:checked+label{
+    color: var(--primario-rosa-2);
+}
+
+input[type=radio]:checked:before{
+    content: '';
+    align-self: center;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    padding: 0px;
+    font-size: 14px;
+    background-color: white;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
 /* * 
 *   ###################### FUENTES ##################################### 
 * */
@@ -181,7 +247,7 @@ input[type=checkbox]:checked:before{
 
 .container{
     display: grid;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -411,10 +477,124 @@ input[type=checkbox]:checked:before{
     font-size: 16px;
 }
 
-.form-group{
-    margin-bottom: 10px;
+/* * 
+*   ###################### RADIO ##################################### 
+* */
+
+.radio-group{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    align-content: start;
+    align-items: center;
+    grid-gap: 10px;
+    margin: 4px 0px;
 }
 
+.radio-group label{
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* * 
+*   ###################### RANGE ##################################### 
+* */
+
+.container-range{
+    position: relative;
+    height: 20px;
+}
+
+.line-range{
+    width: 100%;
+    height: 6px;
+    background-color: var(--neutro-200);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+input[type=range].range{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    position: absolute;
+    background-color: transparent;
+    pointer-events: none;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    height: 6px;
+    border: none;
+}
+input[type=range]::-webkit-slider-runnable-track{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 6px;
+}
+input[type=range]::-moz-range-track{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 6px;
+}
+
+input[type=range]::-ms-track{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 6px;
+}
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background-color: var(--primario-rosa-2);
+    cursor: pointer;
+    pointer-events: auto;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+input[type=range]::-moz-range-thumb{
+    -moz-appearance: none;
+    height: 17px;
+    width: 17px;
+    background-color: var(--primario-rosa-2);
+    cursor: pointer;
+    pointer-events: auto;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+input[type=range]::-ms-thumb{
+    appearance: none;
+    height: 17px;
+    width: 17px;
+    background-color: var(--primario-rosa-2);
+    cursor: pointer;
+    pointer-events: auto;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.form-group{
+    margin-bottom: 10px;
+    text-align: start;
+}
 
 
 .line{
@@ -470,11 +650,10 @@ input[type=checkbox]:checked:before{
 }
 
 .content-circle-img{
+    display: grid;
     position: relative;
-    max-height: 100px;
-    min-height: 100px;
-    max-width: 100px;
-    min-width: 100px;
+    min-height: 80px;
+    min-width: 80px;
 }
 
 
@@ -485,13 +664,16 @@ input[type=checkbox]:checked:before{
     width: 100%;
     height: 100%;
     justify-self: start;
-
-    border-radius: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
-.circle-img img{
+.circle-img *{
     width: 100%;
     height: 100%;
-    object-fit:scale-down;
+    object-fit:cover;
 }
 .sub-circle-img{
     position: absolute;

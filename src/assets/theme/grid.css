@@ -21,19 +21,19 @@
 	}
 
 @media (min-width: 1200px) {
-	.grid-col-1x-lg{
+	.gc-1x-lg{
 		grid-template-rows: auto;
 		grid-template-columns: repeat(1, 1fr);
 	}
-	.grid-col-2x-lg{
+	.gc-2x-lg{
 		grid-template-rows: repeat(2, auto);
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.grid-col-3x-lg{
+	.gc-3x-lg{
 	  grid-template-rows: repeat(3, auto);
 	  grid-template-columns: repeat(3, 1fr);
 	}
-	.grid-col-4x-lg{
+	.gc-4x-lg{
 		  grid-template-rows: repeat(4, auto);
 		  grid-template-columns: repeat(4, 1fr);
 		}
@@ -41,57 +41,57 @@
 
 @media (min-width: 992px) and (max-width: 1199px) { 
 
-	.grid-col-1x{
+	.gc-1x{
 		grid-template-rows: auto;
 		grid-template-columns: repeat(1, 1fr);
 	}
-	.grid-col-2x{
+	.gc-2x{
 		grid-template-rows: repeat(2, auto);
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.grid-col-3x{
+	.gc-3x{
 	  grid-template-rows: repeat(3, auto);
 	  grid-template-columns: repeat(3, 1fr);
 	}
-	.grid-col-4x{
+	.gc-4x{
 	  grid-template-rows: repeat(4, auto);
 	  grid-template-columns: repeat(4, 1fr);
 	}
 }
 @media (min-width: 768px) and (max-width: 992px) { 
 
-	.grid-col-1x-sm{
+	.gc-1x-sm{
 		grid-template-rows: auto;
 		grid-template-columns: repeat(1, 1fr);
 	}
-	.grid-col-2x-sm{
+	.gc-2x-sm{
 		grid-template-rows: repeat(2, auto);
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.grid-col-3x-sm{
+	.gc-3x-sm{
 	  grid-template-rows: repeat(3, auto);
 	  grid-template-columns: repeat(3, 1fr);
 	}
-	.grid-col-4x-sm{
+	.gc-4x-sm{
 	  grid-template-rows: repeat(4, auto);
 	  grid-template-columns: repeat(4, 1fr);
 	}
 
 }
 @media (min-width: 100px)  and (max-width: 767px) {
-	.grid-col-1x-xs{
+	.gc-1x-xs{
 		grid-template-rows: auto;
 		grid-template-columns: repeat(1, 1fr);
 	}
-	.grid-col-2x-xs{
+	.gc-2x-xs{
 		grid-template-rows: repeat(2, auto);
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.grid-col-3x-xs{
+	.gc-3x-xs{
 	  grid-template-rows: repeat(3, auto);
 	  grid-template-columns: repeat(3, 1fr);
 	}
-	.grid-col-3x-xs{
+	.gc-3x-xs{
 	  grid-template-rows: repeat(4, auto);
 	  grid-template-columns: repeat(4, 1fr);
 	}

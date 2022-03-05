@@ -1,0 +1,128 @@
+<div class="temp-admin-home">
+
+    <div class="section-home-header">
+        <div class="container-cifras">
+            <h1>1,200</h1>
+            <h5 class="font-400 align-self-end">USUARIOS</h5>
+        </div>
+
+        <div class="container-cifras">
+            <h1>847</h1>
+            <h5 class="font-400 align-self-end">ANUNCIOS</h5>
+        </div>
+
+        <div class="container-cifras">
+            <h1>7</h1>
+            <h5 class="font-400 align-self-end">REPORTES</h5>
+        </div>
+    </div>
+
+    <div class="section-home-main">
+
+        <div class="sub-nav-admin">
+            <button id="gest_user" (click)="nav('gest_user', 0)">Gestión de usuarios</button>
+            <button id="gest_anuncio" (click)="nav('gest_anuncio', 1)">Gestión de anuncios</button>
+            <button id="reporte" (click)="nav('reporte', 2)">Reportes de usuarios</button>
+        </div>
+
+        <div class="admin-home-filtro">
+            <input type="text" placeholder="Buscar">
+            <button class="justify-self-end" id="open_filtro" (click)="OpenFiltro()">Filtrar por</button>
+        </div>
+
+        <app-admin-home-usuario *ngIf="ctrl_menu == 0"></app-admin-home-usuario>
+        
+        <app-admin-home-anuncios *ngIf="ctrl_menu == 1"></app-admin-home-anuncios>
+        
+        <app-admin-home-reportes *ngIf="ctrl_menu == 2"></app-admin-home-reportes>
+
+    <div class="modal-filtro" *ngIf="ctrl_modal_filtro" >
+        <h3 class="font-500">Filtrar por</h3>
+
+        <div class="section-filtro">
+            <div class="filtro-sub-title">
+                <h5 class="font-500">ESTADO DE USUARIOS</h5>
+            </div>
+
+            <div class="radio-group">
+                <input id="a" name="usuario" type="radio">
+                <label for="a">Usuarios actuales</label>
+            </div>
+            <div class="radio-group">
+                <input id="b" name="usuario" type="radio">
+                <label for="b">Usuarios actuales</label>
+            </div>
+        </div>
+
+        <div class="section-filtro">
+            <div class="filtro-sub-title">
+                <h5 class="font-500">LOCALIDAD</h5>
+            </div>
+
+            <div class="form-group">
+                <label for="">Pais </label>
+                <select name="" id="">
+                    <option value="0" disabled>Seleccionar</option>
+                   
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="">Estado </label>
+                <select name="" id="" >
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="">Ciudad </label>
+                <select name="" id="">
+
+                </select>
+            </div>
+        </div>
+
+        <div class="section-filtro">
+            <div class="filtro-sub-title">
+                <h5 class="font-500">DISTANCIA</h5>
+            </div>
+
+            <div class="container-range">
+                <div class="line-range" id="line-distancia"></div>
+                <input type="range" id="rango-distancia-min" class="range" min="0" max="100" value="30">
+                <input type="range" id="rango-distancia-max" class="range"min="0" max="100" value="70">
+            </div>
+        </div>
+
+        <div class="section-filtro">
+            <div class="filtro-sub-title">
+                <h5 class="font-500">EDAD</h5>
+            </div>
+
+            <div class="container-range">
+                <div class="line-range" id="line-edad"></div>
+                <input type="range" id="rango-edad-min"  class="range" min="0" max="100" value="30">
+                <input type="range" id="rango-edad-max" class="range" min="0" max="100" value="70">
+            </div>
+        </div>
+
+        <div class="section-filtro">
+            <div class="filtro-sub-title">
+                <h5 class="font-500">FECHA</h5>
+            </div>
+
+            <div class="group-fecha">
+                <input type="date">
+                <div class="line-h"></div>
+                <input type="date">              
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary btn-block" (click)="ctrl_modal_filtro = !ctrl_modal_filtro">Filtrar</button>
+
+    </div>
+
+</div>
+
+

@@ -55,3 +55,11 @@ a{
 .btn-recovery:hover{
     color: var(--primario-rosa-2);
 }
+
+.fb_reset{
+    display: none!important;
+}
+
+#fb-root{
+    display: none!important;
+}
