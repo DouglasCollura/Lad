@@ -1,0 +1,66 @@
+.filtro{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filtro input{
+    width: 250px;
+    background-color: var(--neutro-50);
+    border-radius: 12px;
+}
+
+.btn-filtro{
+    border: 1px solid #DFDFDF;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: #F6F6F6;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    height: max-content;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: var(--neutro-500);
+}
+
+.temp-crear{
+    min-width: 440px;
+    max-width: 440px;
+    width: 440px;
+    min-height: 420px;
+}
+
+.temp-crear-body{
+    display: grid;
+    padding: 20px 10px;
+    grid-gap: 20px;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+
+.circle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--primario-rosa-2);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.circle-disable{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--neutro-300);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}

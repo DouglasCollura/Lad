@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialAuthService} from "angularx-social-login";
 import { Router} from '@angular/router';
+import { AuthServiceService } from '../services/auth/auth-service.service';
 
 declare var $: any;
 
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
     constructor(
         private authService: SocialAuthService,
         private router: Router,
+        private AuthServiceService:AuthServiceService
     ) { }
 
     loggedIn: boolean = false;
@@ -26,8 +28,11 @@ export class HomeComponent implements OnInit {
 
 
     signOut(): void {
-        this.authService.signOut().then(()=>{
-            this.router.navigate(['/land']);
+        this.AuthServiceService.LogOut().then(res=>{
+            if(res.message){
+                sessionStorage.clear();
+                this.router.navigate(["/"]);
+            }
         });
     }
 

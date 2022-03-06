@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VacioU } from 'dist/ladies-vip/assets/script/general';
+import { VacioU } from '../../../../assets/script/general';
 import { ModalesService } from '../../../componentes/modales/modales.service';
 
 declare var $: any;

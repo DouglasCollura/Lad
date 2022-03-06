@@ -1,0 +1,134 @@
+<div class="filtro">
+    <div class="grid flex-column align-items-center">
+        <input type="text" placeholder="Buscar">
+        <button class="btn-filtro">Filtrar</button>
+    </div>
+
+    <button class="btn-primary-invert">Agregar negocio</button>
+
+</div>
+<div class="grid align-content-start">
+    <table>
+        <thead>
+            <th>NOMBRE DEL NEGOCIO</th>
+            <th>EMAIL</th>
+            <th>TELEFONO</th>
+            <th>LUGAR</th>
+            <th></th>
+            <th></th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let number of [0,1,2,3,4]; let i = index">
+                <td>Masajes Happy end</td>
+                <td>matiassaldivar@gmail.com</td>
+                <td>+34  984 572 496</td>
+                <td>Barcelona, España</td>
+                <td >
+                    <button ><i class="icon icon-eyes"></i></button>
+                </td>
+                <td style="position: relative;">
+                    <button ><i style="font-size: 5px;" class="icon icon-dots-horizontal"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- ! MODAL AGREGAR NEGOCIO ================================================= -->
+
+<div class="container" *ngIf="ctrl_modal_negocio">
+    
+    <div class="card temp-crear">
+        <div class="header-card">
+            <h2 class="font-500">Crear negocio</h2>
+            <button class="btn-icon align-self-start justify-self-end"><i class="icon icon-close"></i></button>
+        </div>
+    
+        <!-- ? FASE 1 ======================================== -->
+        <div class="temp-crear-body" *ngIf="fase_modal_negocio == 0">
+            <h3>Información personal sobre el dueño de negocio</h3>
+
+            <div>
+                <div class="form-group">
+                    <label for="">Nombre </label>
+                    <input type="text"  placeholder="Ingrese un nombre">
+                </div>
+    
+                <div class="form-group">
+                    <label for="">Email </label>
+                    <input type="text"  placeholder="hola@gmail.com">
+                </div>               
+            </div>
+
+
+            <button class="btn  btn-disable btn-block" (click)="fase_modal_negocio = 1">Comenzar</button>
+        </div>
+
+        <!-- ? FASE 2 ======================================== -->
+
+        <div class="temp-crear-body" *ngIf="fase_modal_negocio != 0">
+            <div class="grid flex-column" style="justify-content: space-between;">
+                <h4>PASO {{paso_modal_negocio}} </h4>
+
+                <div class="flex-column">
+                    <div class="circle"></div>
+                    <div class="circle-disable"></div>
+                    <div class="circle-disable"></div>
+                </div>
+            </div>
+
+
+            <!-- ? PASO 1 ======================================== -->
+
+            <div class="grid gap-20" *ngIf="paso_modal_negocio == 1">
+                <h3 class="align-self-start">Ingresar información sobre el negocio</h3>
+                
+                <div>
+                    <div class="form-group">
+                        <label for="">Nombre del negocio </label>
+                        <input type="text" placeholder="Ingresar un nombre">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="">Categoría</label>
+                        <select name="" id=""></select>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="">WhatsApp (negocio)</label>
+                        <input type="text" placeholder="+34 ">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Sitio web</label>
+                        <input type="text" placeholder="www.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Descripción</label>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+
+                <button class="btn-block btn-primary justify-content-center" (click)="paso_modal_negocio = 2"> Siguiente <i class="icon icon-arrow-right"></i> </button>
+            </div>
+
+            <div class="grid gap-20" *ngIf="paso_modal_negocio == 2">
+                <h3 class="align-self-start">Ingresar información del lugar</h3>
+                
+                <div>
+                    <div class="form-group">
+                        <label for="">Nombre del negocio </label>
+                        <input type="text" placeholder="Ingresar un nombre">
+                    </div>
+                </div>
+
+                <button class="btn-block btn-primary justify-content-center" (click)="paso_modal_negocio = 2"> Siguiente <i class="icon icon-arrow-right"></i> </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

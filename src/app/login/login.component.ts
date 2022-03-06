@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
     //?GESTION===================================================================================
     usuario:any={
         correo:null,
-        clave:null
+        clave:null,
+        tipo:1
     }
 
     user: SocialUser | undefined;
@@ -64,11 +65,52 @@ export class LoginComponent implements OnInit {
     //?GESTION============================================================
 
     signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then( (res)=>{
+            this.usuario.tipo = 2;
+            this.usuario.correo = res.email;
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.correo}).then((res)=>{
+                if(res.success){
+                    alert("NO ESTÁ REGISTRADO");
+                    this.authService.signOut(true);
+                    this.signInWithGoogle()
+                }
+                if(res.error){
+                    this.AuthServiceService.LoginTemporal(this.usuario)
+                    .then(login=>{
+                        console.log(login)
+                        sessionStorage.setItem('usuario', JSON.stringify(login.data));
+                        sessionStorage.setItem('token', login.access_token);
+                        //redirige
+                        location.href = '/home';
+                    })
+                }
+            });
+        });
     }
 
     signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((res)=>{
+            this.usuario.tipo = 3;
+            this.usuario.correo = res.email;
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.correo}).then((valid)=>{
+                if(valid.success){
+                    alert("NO ESTÁ REGISTRADO");
+                    this.authService.signOut(true);
+                    this.signInWithFB()
+                }
+                if(valid.error){
+                    this.AuthServiceService.LoginTemporal(this.usuario)
+                    .then(login=>{
+                        console.log(login)
+
+                        sessionStorage.setItem('usuario', JSON.stringify(login.data));
+                        sessionStorage.setItem('token', login.access_token);
+                        //redirige
+                        location.href = '/home';
+                    })
+                }
+            });
+        });
     }
 
     signOut(): void {
@@ -76,7 +118,22 @@ export class LoginComponent implements OnInit {
     }
     LogIn(){
         if(this.habLogin){
-            this.router.navigate(['/home']);
+            this.AuthServiceService.Login(this.usuario)
+            .then(login=>{
+                if(login.access_token){
+                    sessionStorage.setItem('usuario', JSON.stringify(login.data));
+                    sessionStorage.setItem('token', login.access_token);
+                    //redirige
+                    location.href = '/home';
+                }
+            })
+            .catch(erri=>{
+                Swal.fire({
+                    title: 'Email no existe!',
+                    icon: 'error',
+                });
+                return;
+            })
         }else{
             Swal.fire({
                 title: 'Complete todos los campos',

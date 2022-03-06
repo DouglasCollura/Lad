@@ -21,6 +21,7 @@ import { AdminHomeReportesComponent } from './admin/home/admin-home-reportes/adm
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider,FacebookLoginProvider } from 'angularx-social-login';
 import { ModalesComponent } from './componentes/modales/modales.component';
+import { AdminMarketPublicadosComponent } from './admin/market-components/admin-market-publicados/admin-market-publicados.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ModalesComponent } from './componentes/modales/modales.component';
     AdminHomeAnunciosComponent,
     AdminHomeReportesComponent,
     ModalesComponent,
+    AdminMarketPublicadosComponent,
     
   ],
   imports: [

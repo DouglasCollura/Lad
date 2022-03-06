@@ -1,1 +1,21 @@
-<p>admin-market works!</p>
+<div class="temp-admin-market">
+
+    <div class="section-market-header">
+        <div class="sub-nav-admin">
+            <button id="gest_user" (click)="nav('gest_user', 0)">Negocios publicados</button>
+            <button id="gest_anuncio" (click)="nav('gest_anuncio', 1)">Solicitudes</button>
+            <button id="reporte" (click)="nav('reporte', 2)">Negocios bloqueados</button>
+        </div>
+    </div>
+
+    <div class="section-market-main">
+
+        <app-admin-market-publicados *ngIf="ctrl_menu == 0"></app-admin-market-publicados>
+        
+        <app-admin-home-anuncios *ngIf="ctrl_menu == 1"></app-admin-home-anuncios>
+        
+        <app-admin-home-reportes *ngIf="ctrl_menu == 2"></app-admin-home-reportes>
+
+</div>
+
+

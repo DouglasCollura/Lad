@@ -265,7 +265,7 @@ input[type=radio]:checked:before{
 
 /* * ###################### BOTONES ##################################################### */
 
-.btn, .btn-primary, .btn-secondary{
+.btn, .btn-primary, .btn-secondary,.btn-primary-invert{
     background: none;
     border: none;
     background-color: rgba(255, 255, 255, 0.12);
@@ -342,6 +342,18 @@ input[type=radio]:checked:before{
     -ms-transform: scale(1.05,1.05);
     -o-transform: scale(1.05,1.05);
 }
+
+.btn-primary-invert{
+    background-color:white ;
+    color: var(--primario-rosa-2);
+    outline: 1px solid var(--primario-rosa-2);
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    -o-transition: all .2s;
+}
+
 
 .btn-link{
     background:none;
@@ -431,6 +443,13 @@ input[type=radio]:checked:before{
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
     padding: 20px;
+}
+
+.header-card{
+    height: 40px;
+    display: grid;
+    grid-auto-flow: column;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
 .subcard-18{

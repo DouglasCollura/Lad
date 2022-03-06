@@ -114,9 +114,18 @@ export class SignupComponent implements OnInit {
             this.usuario.tipo = 2;
             this.usuario.datos.nombre = res.name;
             this.usuario.datos.correo = res.email;
-            console.log(this.usuario)
-            this.fase = 1;
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo}).then((res)=>{
+                
+                if(res.success){
+                    this.fase = 1;
+                }
 
+                if(res.error){
+                    alert("YA EXISTE");
+                    this.authService.signOut(true);
+                    this.signInWithGoogle()
+                }
+            });
         });
     }
 
@@ -125,9 +134,23 @@ export class SignupComponent implements OnInit {
             this.usuario.tipo = 3;
             this.usuario.datos.nombre = res.name;
             this.usuario.datos.correo = res.email;
-            console.log(this.usuario)
-            this.fase = 1;
-        });;
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo}).then((res)=>{
+                
+                if(res.success){
+                    this.fase = 1;
+                }
+
+                if(res.error){
+                    alert("YA EXISTE");
+                    this.authService.signOut(true);
+                    this.signInWithFB()
+                }
+            });
+        });
+    }
+
+    refreshToken(): void {
+        this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
     }
 
     signOut(): void {
@@ -142,8 +165,24 @@ export class SignupComponent implements OnInit {
             });
             return;
         }
-        this.fase = 1;
+
         this.usuario.tipo = 1;
+        this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo})
+        .then((res)=>{
+            console.log(res)
+            if(res.success){
+                this.fase = 1;
+            }
+        })
+        .catch(err=>{
+            if(err.status == 500){
+                alert("YA EXISTE");
+
+            }
+            if(err.error.email){
+                alert("YA EXISTE");
+            }
+        });
     }
 
     CargarImagen(event: any) {
@@ -183,17 +222,32 @@ export class SignupComponent implements OnInit {
     }
 
     SignUp(){
-        //this.router.navigate(['/home']);
         this.AuthServiceService.signUp(this.usuario)
         .then(res=>{
+
             if(res.success){
                 this.AuthServiceService.UpImage(this.img_user)
-                .then(res=>{
-                    console.log(res)
-                    this.AuthServiceService.LoginTemporal(this.usuario)
-                    .then(res=>{
-                        console.log(res)
-                    })
+                .then(img=>{
+                    if(this.usuario.tipo == 1){
+                        this.AuthServiceService.Login({correo:this.usuario.datos.correo, clave: this.usuario.datos.clave})
+                        .then(login=>{
+                            sessionStorage.setItem('usuario', JSON.stringify(login.data));
+                            sessionStorage.setItem('ruta_img', JSON.stringify(img));
+                            sessionStorage.setItem('token', login.access_token);
+                            //redirige
+                            location.href = '/home';
+                        })
+                    }else{
+                        this.AuthServiceService.LoginTemporal(this.usuario)
+                        .then(login=>{
+                            sessionStorage.setItem('usuario', JSON.stringify(res.data));
+                            sessionStorage.setItem('ruta_img', JSON.stringify(img));
+                            sessionStorage.setItem('token', login.access_token);
+                            //redirige
+                            location.href = '/home';
+                        })
+                    }
+
                 })
             }
         })
