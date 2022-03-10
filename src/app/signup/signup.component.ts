@@ -35,13 +35,13 @@ export class SignupComponent implements OnInit {
     usuario: any = {
         tipo:null,
         datos: {
-            nombre: null,
-            correo: null,
-            code_phone: '+',
-            telefono: null,
-            clave: null
+            nombre: "asd",
+            correo: "asd@gmail.com",
+            code_phone: '+58',
+            telefono: "123",
+            clave: "asd"
         },
-        fecha_nac: null,
+        fecha_nac: "2022-08-04",
         locacion: {
             pais: 0,
             estado: null,
@@ -114,13 +114,13 @@ export class SignupComponent implements OnInit {
             this.usuario.tipo = 2;
             this.usuario.datos.nombre = res.name;
             this.usuario.datos.correo = res.email;
-            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo}).then((res)=>{
-                
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo})
+            .then((res)=>{
                 if(res.success){
                     this.fase = 1;
                 }
 
-                if(res.error){
+                if(res.email){
                     alert("YA EXISTE");
                     this.authService.signOut(true);
                     this.signInWithGoogle()
@@ -130,20 +130,20 @@ export class SignupComponent implements OnInit {
     }
 
     signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then( (res)=>{
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+        .then((res)=>{
             this.usuario.tipo = 3;
             this.usuario.datos.nombre = res.name;
             this.usuario.datos.correo = res.email;
-            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo}).then((res)=>{
-                
-                if(res.success){
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.datos.correo}).then((valid)=>{
+                if(valid.success){
                     this.fase = 1;
                 }
 
-                if(res.error){
+                if(valid.email){
                     alert("YA EXISTE");
-                    this.authService.signOut(true);
-                    this.signInWithFB()
+                    this.authService.signOut(true)
+                    this.authService.signOut()
                 }
             });
         });
@@ -224,11 +224,10 @@ export class SignupComponent implements OnInit {
     SignUp(){
         this.AuthServiceService.signUp(this.usuario)
         .then(res=>{
-
             if(res.success){
                 this.AuthServiceService.UpImage(this.img_user)
                 .then(img=>{
-                    if(this.usuario.tipo == 1){
+                    if(res.tipo == 1){
                         this.AuthServiceService.Login({correo:this.usuario.datos.correo, clave: this.usuario.datos.clave})
                         .then(login=>{
                             sessionStorage.setItem('usuario', JSON.stringify(login.data));
@@ -238,7 +237,7 @@ export class SignupComponent implements OnInit {
                             location.href = '/home';
                         })
                     }else{
-                        this.AuthServiceService.LoginTemporal(this.usuario)
+                        this.AuthServiceService.LoginExterno({correo:this.usuario.datos.correo, tipo: this.usuario.tipo })
                         .then(login=>{
                             sessionStorage.setItem('usuario', JSON.stringify(res.data));
                             sessionStorage.setItem('ruta_img', JSON.stringify(img));

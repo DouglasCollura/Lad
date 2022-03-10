@@ -15,6 +15,7 @@ export class AuthServiceService {
     url = environment.serverUrl;
     token=sessionStorage.getItem('token');
 
+    
     async ValEmail(data:any): Promise<any> {
         const send = this.http.post(`${this.url}validate-email`, data).toPromise()
         return send;
@@ -30,8 +31,8 @@ export class AuthServiceService {
         return send;
     }
 
-    async LoginTemporal(data:any): Promise<any> {
-        const send = this.http.post(`${this.url}login-temp`, data).toPromise()
+    async LoginExterno(data:any): Promise<any> {
+        const send = this.http.post(`${this.url}login-externo`, data).toPromise()
         return send;
     }
 

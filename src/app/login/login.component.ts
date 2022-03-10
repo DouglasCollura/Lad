@@ -65,23 +65,25 @@ export class LoginComponent implements OnInit {
     //?GESTION============================================================
 
     signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then( (res)=>{
+        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+        .then( (res)=>{
             this.usuario.tipo = 2;
             this.usuario.correo = res.email;
-            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.correo}).then((res)=>{
-                if(res.success){
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.correo})
+            .then((info)=>{
+                if(info.success){
                     alert("NO ESTÁ REGISTRADO");
                     this.authService.signOut(true);
                     this.signInWithGoogle()
                 }
-                if(res.error){
+                if(info.email){
                     this.AuthServiceService.LoginTemporal(this.usuario)
                     .then(login=>{
-                        console.log(login)
                         sessionStorage.setItem('usuario', JSON.stringify(login.data));
                         sessionStorage.setItem('token', login.access_token);
                         //redirige
                         location.href = '/home';
+                        
                     })
                 }
             });
@@ -92,13 +94,14 @@ export class LoginComponent implements OnInit {
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((res)=>{
             this.usuario.tipo = 3;
             this.usuario.correo = res.email;
-            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.correo}).then((valid)=>{
+            this.AuthServiceService.ValEmail({tipo:this.usuario.tipo,email:this.usuario.correo})
+            .then((valid)=>{
                 if(valid.success){
-                    alert("NO ESTÁ REGISTRADO");
-                    this.authService.signOut(true);
-                    this.signInWithFB()
+                   // this.signOuts();
+                    alert("NO EXISTE")
+                   this.signInWithFB()
                 }
-                if(valid.error){
+                if(valid.email){
                     this.AuthServiceService.LoginTemporal(this.usuario)
                     .then(login=>{
                         console.log(login)
@@ -112,6 +115,29 @@ export class LoginComponent implements OnInit {
             });
         });
     }
+
+
+
+
+    facebookUser:any;
+    signOuts() {
+        this.authService.authState.subscribe((user) => {
+            this.facebookUser = user;
+                if (this.facebookUser) {
+                    this.fbsignOut();
+                }
+            });
+        }
+        fbsignOut(): void {
+            this.authService.signOut(true);
+        return;
+    }
+
+
+
+
+
+
 
     signOut(): void {
         this.authService.signOut();

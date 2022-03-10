@@ -57,9 +57,13 @@ import { AdminMarketPublicadosComponent } from './admin/market-components/admin-
         autoLogin: false,
         providers: [
           {
+          // ID GOOGLE LOCALHOST 998158333459-v13en8bhgur1on2evjum0g9h37mod054.apps.googleusercontent.com
+          // ID GOOGLE DEVELOPER 710857039553-pc3j2qjte7573b1t9dnjd2h6g73gvlb1.apps.googleusercontent.com
+          // 524875122338654 DEV
+          // LOCAL 1588572954831923
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '998158333459-v13en8bhgur1on2evjum0g9h37mod054.apps.googleusercontent.com'
+              '710857039553-pc3j2qjte7573b1t9dnjd2h6g73gvlb1.apps.googleusercontent.com'
             )
           },
           {
@@ -72,4 +76,5 @@ import { AdminMarketPublicadosComponent } from './admin/market-components/admin-
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

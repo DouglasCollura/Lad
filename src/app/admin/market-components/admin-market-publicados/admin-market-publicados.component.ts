@@ -13,10 +13,10 @@ export class AdminMarketPublicadosComponent implements OnInit {
 
 
     // ?MODALES ===========================
-    ctrl_modal_negocio:boolean=false;
+    ctrl_modal_negocio:boolean=true;
 
     // ?FASES MODALES ===========================
-    fase_modal_negocio:number=0;
+    fase_modal_negocio:number=1;
     paso_modal_negocio:number=1;
 
     ngOnInit(): void {

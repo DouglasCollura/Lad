@@ -4,7 +4,7 @@
         <button class="btn-filtro">Filtrar</button>
     </div>
 
-    <button class="btn-primary-invert">Agregar negocio</button>
+    <button class="btn-primary-invert" (click)="ctrl_modal_negocio = true">Agregar negocio</button>
 
 </div>
 <div class="grid align-content-start">
@@ -73,9 +73,9 @@
                 <h4>PASO {{paso_modal_negocio}} </h4>
 
                 <div class="flex-column">
-                    <div class="circle"></div>
-                    <div class="circle-disable"></div>
-                    <div class="circle-disable"></div>
+                    <div  [class]="paso_modal_negocio == 1?'circle':'circle-disable'"></div>
+                    <div  [class]="paso_modal_negocio == 2?'circle':'circle-disable'"></div>
+                    <div  [class]="paso_modal_negocio == 3?'circle':'circle-disable'"></div>
                 </div>
             </div>
 
@@ -115,17 +115,81 @@
                 <button class="btn-block btn-primary justify-content-center" (click)="paso_modal_negocio = 2"> Siguiente <i class="icon icon-arrow-right"></i> </button>
             </div>
 
+
+            <!-- ? PASO 2 ======================================== -->
+
             <div class="grid gap-20" *ngIf="paso_modal_negocio == 2">
                 <h3 class="align-self-start">Ingresar información del lugar</h3>
                 
                 <div>
                     <div class="form-group">
-                        <label for="">Nombre del negocio </label>
-                        <input type="text" placeholder="Ingresar un nombre">
+                        <label for="">Dirección </label>
+                        <input type="text" placeholder="Ingrese una dirección">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">País </label>
+                        <select name=""  id="">
+                            <option value="0" disabled>Seleccionar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Lugar </label>
+                        <select name=""  id="">
+                            <option value="0" disabled>Seleccionar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Sitio web </label>
+                        <input type="text" placeholder="Ingrese una dirección">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Ubicar dentro del mapa</label>
+                        <div class="content-map">
+                        </div>
+                    </div>
+
+                    <div class="grid gc-2x-g gap-10">
+                        <div class="form-group">
+                            <label for="">Coordenadas</label>
+                            <input type="text" placeholder="Latitud">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Coordenadas</label>
+                            <input type="text" placeholder="Longitud">
+                        </div>
                     </div>
                 </div>
 
-                <button class="btn-block btn-primary justify-content-center" (click)="paso_modal_negocio = 2"> Siguiente <i class="icon icon-arrow-right"></i> </button>
+                <button class="btn-primary justify-self-end" (click)="paso_modal_negocio = 3"> Siguiente <i class="icon icon-arrow-right"></i> </button>
+            </div>
+
+
+            <!-- ? PASO 3 ======================================== -->
+
+            <div class="grid gap-20" *ngIf="paso_modal_negocio == 3">
+                <h3 class="align-self-start">Ingresar imagenes que identifiquen al negocio</h3>
+                
+                <div class="content-group-image">
+                    <div class="content-img">
+
+                    </div>
+
+                    <div class="carousel-image">
+                        <div class="content-img"></div>
+
+                        <div class="content-img"></div>
+                        
+                        <div class="content-img"></div>
+                    </div>
+                </div>
+
+
+                <button class="btn-primary justify-self-end" (click)="paso_modal_negocio = 3"> Siguiente <i class="icon icon-arrow-right"></i> </button>
             </div>
         </div>
 

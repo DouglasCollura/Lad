@@ -64,3 +64,54 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
+
+
+
+.content-map{
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    background-color:var(--neutro-100);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.content-group-image{
+    display: grid;
+    grid-gap: 15px;
+}
+
+.content-img{
+    width: 100%;
+    height: 300px;
+    background-color: var(--neutro-100);
+    border-radius: 8px;
+    outline: 2px dashed var(--neutro-300);
+    outline-offset: -10px;
+    position: relative;
+    display: grid;
+    cursor: pointer;
+}
+
+.content-img::after{
+    position: absolute;
+    content: "+";
+    font-size: 3em;
+    font-weight: 200;
+    color: var(--neutro-400);
+    place-self: center;
+}
+
+.carousel-image{
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 5px;
+    justify-content: space-between;
+}
+
+.carousel-image .content-img{
+    width: 110px;
+    height: 95px;
+}
