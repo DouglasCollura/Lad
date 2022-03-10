@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
                     this.signInWithGoogle()
                 }
                 if(info.email){
-                    this.AuthServiceService.LoginTemporal(this.usuario)
+                    this.AuthServiceService.LoginExterno(this.usuario)
                     .then(login=>{
                         sessionStorage.setItem('usuario', JSON.stringify(login.data));
                         sessionStorage.setItem('token', login.access_token);
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
                    this.signInWithFB()
                 }
                 if(valid.email){
-                    this.AuthServiceService.LoginTemporal(this.usuario)
+                    this.AuthServiceService.LoginExterno(this.usuario)
                     .then(login=>{
                         console.log(login)
 
